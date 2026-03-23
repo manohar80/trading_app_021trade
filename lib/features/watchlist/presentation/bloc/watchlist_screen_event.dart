@@ -1,3 +1,4 @@
+///Event screen handling reorder event
 abstract class WatchlistScreenEvent {}
 
 class LoadWatchlistScreen extends WatchlistScreenEvent {}

@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../data/stock_data_model.dart';
 
+///WatchlistScreenState - Storing the state data which is Stocks list
 class WatchlistScreenState extends Equatable {
   final List<StockDataModel> stocksData;
 

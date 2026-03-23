@@ -1,3 +1,4 @@
+///StockDataModel - Model class for structure of stock data
 class StockDataModel {
   final String symbol;
   final String name;

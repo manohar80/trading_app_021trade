@@ -8,6 +8,9 @@ import 'package:trading_app_021trade/features/watchlist/presentation/bloc/watchl
 import 'package:trading_app_021trade/features/watchlist/presentation/widgets'
     '/watch_data_widget.dart';
 
+///WatchlistScreen - This is the main screen for showing the list of
+///stocks widgets.
+
 class WatchlistScreen extends StatelessWidget {
   const WatchlistScreen({super.key});
 

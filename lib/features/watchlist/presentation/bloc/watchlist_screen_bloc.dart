@@ -3,6 +3,7 @@ import 'package:trading_app_021trade/features/watchlist/data/stock_data_model.da
 import 'package:trading_app_021trade/features/watchlist/presentation/bloc/watchlist_screen_event.dart';
 import 'package:trading_app_021trade/features/watchlist/presentation/bloc/watchlist_screen_state.dart';
 
+///WatchlistScreenBloc - Business logic implemented here.
 class WatchlistScreenBloc
     extends Bloc<WatchlistScreenEvent, WatchlistScreenState> {
   WatchlistScreenBloc() : super(WatchlistScreenState(stocksData: [])) {
@@ -10,6 +11,7 @@ class WatchlistScreenBloc
     on<ReorderWatchlistScreen>(_onReorder);
   }
 
+  ///function used to load initial data which is static now.
   void _onLoad(LoadWatchlistScreen event, Emitter<WatchlistScreenState> emit) {
     final sampleStocks = [
       StockDataModel(
@@ -41,6 +43,8 @@ class WatchlistScreenBloc
     emit(state.copyWith(stocksData: sampleStocks));
   }
 
+  ///onReorder - function is handling the stock reording .Removing old index
+  ///and add new index
   void _onReorder(
     ReorderWatchlistScreen event,
     Emitter<WatchlistScreenState> emit,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:trading_app_021trade/features/watchlist/data/stock_data_model.dart';
 
+///WatchDataWidget - Common widget with listview.We can use it in multiple
+///screens.
 class WatchDataWidget extends StatelessWidget {
   final StockDataModel stockData;
 
