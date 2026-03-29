@@ -38,10 +38,6 @@ jobs:
       - name: Analyze project
         run: flutter analyze
 
-
-      - name: Grant execute permission
-        run: chmod +x android/gradlew
-
       - name: Build APK
         run: flutter build apk --release
 
