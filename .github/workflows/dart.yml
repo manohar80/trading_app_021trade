@@ -1,20 +1,61 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-steps:
-  - uses: actions/checkout@v5
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-  - uses: actions/setup-java@v5
-    with:
-      distribution: 'temurin'
-      java-version: '17'
+    steps:
+      # Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
-  - uses: subosito/flutter-action@v2
-    with:
-      flutter-version: "3.24.0"
+      # Setup Java (required for Android build)
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
-  - run: flutter doctor -v
-  - run: flutter pub get
-  - run: flutter analyze
-  - run: chmod +x android/gradlew
-  - run: flutter build apk --release
+      # Setup Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.0"
+          channel: stable
+
+      # Debug info (VERY IMPORTANT)
+      - name: Flutter Doctor
+        run: flutter doctor -v
+
+      # Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Analyze code
+      - name: Analyze project
+        run: flutter analyze
+
+      # Run tests (optional but recommended)
+      - name: Run tests
+        run: flutter test
+
+      # Fix Gradle permission
+      - name: Grant execute permission
+        run: chmod +x android/gradlew
+
+      # Build APK
+      - name: Build APK
+        run: flutter build apk --release
+
+      # Build App Bundle (Play Store)
+      - name: Build App Bundle
+        run: flutter build appbundle --release
