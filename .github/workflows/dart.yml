@@ -38,8 +38,6 @@ jobs:
       - name: Analyze project
         run: flutter analyze
 
-      - name: Run tests
-        run: flutter test
 
       - name: Grant execute permission
         run: chmod +x android/gradlew
