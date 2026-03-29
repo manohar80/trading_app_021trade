@@ -14,48 +14,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout code
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      # Setup Java (required for Android build)
       - name: Setup Java
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # Setup Flutter
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.24.0"
+          flutter-version: "3.41.6"   # ✅ FIXED
           channel: stable
 
-      # Debug info (VERY IMPORTANT)
       - name: Flutter Doctor
         run: flutter doctor -v
 
-      # Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      # Analyze code
       - name: Analyze project
         run: flutter analyze
 
-      # Run tests (optional but recommended)
       - name: Run tests
         run: flutter test
 
-      # Fix Gradle permission
       - name: Grant execute permission
         run: chmod +x android/gradlew
 
-      # Build APK
       - name: Build APK
         run: flutter build apk --release
 
-      # Build App Bundle (Play Store)
       - name: Build App Bundle
         run: flutter build appbundle --release
